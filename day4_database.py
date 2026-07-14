@@ -47,3 +47,36 @@ biggest = cursor.fetchone()
 print("Biggest transaction:", biggest[0], "-", biggest[1])
 
 conn.close()
+conn = sqlite3.connect("budget.db")
+cursor = conn.cursor()
+
+# WHERE - only transactions above 300
+print("\n--- Transactions above 300 ---")
+cursor.execute("SELECT description, amount FROM transactions WHERE amount > 300")
+for row in cursor.fetchall():
+    print(row)
+
+# ORDER BY - most expensive first
+print("\n--- Most expensive first ---")
+cursor.execute("SELECT description, amount FROM transactions ORDER BY amount DESC")
+for row in cursor.fetchall():
+    print(row)
+
+conn.close()
+conn = sqlite3.connect("budget.db")
+cursor = conn.cursor()
+
+# First update some categories manually so GROUP BY has something to work with
+cursor.execute("UPDATE transactions SET category = 'Food' WHERE description IN ('SWIGGY BANGALORE', 'ZOMATO')")
+cursor.execute("UPDATE transactions SET category = 'Transport' WHERE description = 'UBER AUTO'")
+cursor.execute("UPDATE transactions SET category = 'Entertainment' WHERE description = 'NETFLIX'")
+cursor.execute("UPDATE transactions SET category = 'Shopping' WHERE description = 'AMAZON'")
+conn.commit()
+
+# GROUP BY - total spend per category
+print("\n--- Spend by category ---")
+cursor.execute("SELECT category, SUM(amount) FROM transactions GROUP BY category")
+for row in cursor.fetchall():
+    print(row)
+
+conn.close()
