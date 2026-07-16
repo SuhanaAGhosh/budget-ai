@@ -15,5 +15,12 @@ An AI-powered personal budgeting assistant.
 - Claude API (LLM)
 - Streamlit (dashboard)
 
+## Progress Log
+- Day 1: First API call with requests library
+- Day 2: Looping through list endpoints, status codes
+- Day 3: API keys, .env files, authenticated API calls
+- Day 4: SQLite database, schema design, SQL queries (WHERE, ORDER BY, GROUP BY)
+- Day 5: LLM concepts — transformers, attention, tokens
+  
 ## Built by
 Suhana Ghosh — BTech AI/ML, PES University
