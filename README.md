@@ -10,6 +10,7 @@ An AI-powered personal budgeting assistant.
 - Lets you ask questions in plain English: "how much did I spend on food in June?"
 
 ## Stack
+-Python Oriented
 - Python + FastAPI (backend)
 - SQLite (database)
 - Claude API (LLM)
@@ -23,4 +24,4 @@ An AI-powered personal budgeting assistant.
 - Day 5: LLM concepts — transformers, attention, tokens
   
 ## Built by
-Suhana Ghosh — BTech AI/ML, PES University
+Suhana Ghosh — BTech AI/ML
