@@ -2,10 +2,13 @@ import sqlite3
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from typing import Optional
+
 class Transaction(BaseModel):
     date: str
     description: str
     amount: float
+    category: Optional[str] = None
 app = FastAPI()
 
 def get_db():
@@ -42,17 +45,20 @@ def add_transaction(transaction: Transaction):
     from dotenv import load_dotenv
     load_dotenv()
     
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages=[
-            {
-                "role": "user",
-                "content": f"Categorize this transaction into one of these categories: Food, Transport, Entertainment, Shopping, Bills. Transaction: {transaction.description}. Reply with just the category name, nothing else."
-            }
-        ]
-    )
-    category = response.choices[0].message.content.strip()
+    if transaction.category:
+        category = transaction.category
+    else:
+        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"Categorize this transaction into one of these categories: Food, Transport, Groceries, Shopping, Electricity, Water, Rent, Entertainment, Desired Expenditure. Transaction: {transaction.description}. Reply with just the category name, nothing else."
+                }
+            ]
+        )
+        category = response.choices[0].message.content.strip()
     
     # Save to database
     conn = get_db()
