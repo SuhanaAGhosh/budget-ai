@@ -22,6 +22,8 @@ An AI-powered personal budgeting assistant.
 - Day 3: API keys, .env files, authenticated API calls
 - Day 4: SQLite database, schema design, SQL queries (WHERE, ORDER BY, GROUP BY)
 - Day 5: LLM concepts — transformers, attention, tokens
-  
+
+
+URL: https://budget-ai-j2dqwxrztefggryayobtyd.streamlit.app/
 ## Built by
 Suhana Ghosh — BTech AI/ML
