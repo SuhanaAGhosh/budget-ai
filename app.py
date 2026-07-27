@@ -56,7 +56,8 @@ h1, h2, h3, h4 { color: #a8c490 !important; }
 """, unsafe_allow_html=True)
 
 def get_conn():
-    return psycopg2.connect(os.getenv("DATABASE_URL"))
+    db_url = st.secrets.get("DATABASE_URL") or os.getenv("DATABASE_URL")
+    return psycopg2.connect(db_url, sslmode="require")
 
 def month_name(m):
     return ["Jan","Feb","Mar","Apr","May","Jun",
@@ -298,4 +299,3 @@ if not prev_df.empty:
     st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 else:
     st.info("No data for last month.")
-    
