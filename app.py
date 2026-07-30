@@ -56,9 +56,11 @@ h1, h2, h3, h4 { color: #a8c490 !important; }
 """, unsafe_allow_html=True)
 
 def get_conn():
-    db_url = st.secrets.get("DATABASE_URL") or os.getenv("DATABASE_URL")
+    try:
+        db_url = st.secrets["DATABASE_URL"]
+    except:
+        db_url = os.getenv("DATABASE_URL")
     return psycopg2.connect(db_url, sslmode="require")
-
 def month_name(m):
     return ["Jan","Feb","Mar","Apr","May","Jun",
             "Jul","Aug","Sep","Oct","Nov","Dec"][int(m)-1]
