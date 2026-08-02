@@ -32,4 +32,15 @@ An AI-powered personal finance assistant that automatically categorizes your tra
 
 1. Clone the repo
 2. Install dependencies: `pip install -r requirements.txt`
-3. Create a `.env` file with your keys:
+3. Create a `.env` file with your keys.
+4. Run the backend: `py -m uvicorn day6_api:app --reload`
+5. Run the frontend: `py -m streamlit run dashboard.py`
+
+---
+
+---
+
+## Built by
+
+Suhana Ghosh — BTech AI/ML, PES University, Bangalore
+
